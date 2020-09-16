@@ -17,3 +17,7 @@ output security_group_ssh {
 output security_group_outbound {
   value = module.security_group_outbound.this_security_group_id
 }
+
+output account_id {
+  value = data.aws_caller_identity.current.account_id
+}
