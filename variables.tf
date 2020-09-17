@@ -3,6 +3,7 @@ variable tags {
   default = {
     TTL   = "48"
     owner = "Grant Orchard"
+    delete = false
   }
 }
 
