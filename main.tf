@@ -77,7 +77,7 @@ resource "aws_route53_record" "aws_sub_zone_ns" {
   ttl     = "30"
 
   records = [
-    for awsns in aws_route53_zone.aws_sub_zone.name_servers :
+    for awsns in aws_route53_zone.aws_sub_zone[each.value].name_servers :
     awsns
   ]
 }
