@@ -35,6 +35,6 @@ variable my_cidr {
 }
 
 variable sub_zone {
-  type= string
+  type= list
   default = []
 }
