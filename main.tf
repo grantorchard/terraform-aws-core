@@ -58,7 +58,7 @@ data "aws_route53_zone" "main" {
 
 resource "aws_route53_zone" "aws_sub_zone" {
   for_each = toset(var.sub_zone)
-  name    = var.sub_zone
+  name    = each.value
   comment = "Managed by Terraform, Delegated Sub Zone for AWS for go.hashidemos.io"
 
   tags = {
@@ -72,7 +72,7 @@ resource "aws_route53_zone" "aws_sub_zone" {
 resource "aws_route53_record" "aws_sub_zone_ns" {
   for_each = toset(var.sub_zone)
   zone_id = data.aws_route53_zone.main.zone_id
-  name    = var.sub_zone
+  name    = each.value
   type    = "NS"
   ttl     = "30"
 
