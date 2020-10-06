@@ -55,7 +55,7 @@ data "aws_route53_zone" "main" {
 }
 
 # AWS SUBZONE
-/*
+
 resource "aws_route53_zone" "aws_sub_zone" {
   for_each = toset(var.sub_zone)
   name    = each.value
@@ -70,7 +70,6 @@ resource "aws_route53_zone" "aws_sub_zone" {
 }
 
 resource "aws_route53_record" "aws_sub_zone_ns" {
-  depends_on = [aws_route53_zone.aws_sub_zone]
   for_each = toset(var.sub_zone)
   zone_id = data.aws_route53_zone.main.zone_id
   name    = each.value
@@ -82,4 +81,12 @@ resource "aws_route53_record" "aws_sub_zone_ns" {
     awsns
   ]
 }
-*/
+
+resource "aws_vpc_peering_connection_accepter" "peer" {
+  vpc_peering_connection_id = "pcx-0a6956775e59ab4aa"
+  auto_accept               = true
+
+  tags = {
+    Side = "Accepter"
+  }
+}
