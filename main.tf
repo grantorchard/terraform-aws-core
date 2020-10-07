@@ -1,3 +1,7 @@
+locals {
+  remote_vpc_id = data.terraform_remote_state.burkey-aws-core.vpc_id
+}
+
 data aws_caller_identity "current" {}
 
 data aws_availability_zones "this" {
@@ -61,12 +65,7 @@ resource "aws_route53_zone" "aws_sub_zone" {
   name    = each.value
   comment = "Managed by Terraform, Delegated Sub Zone for AWS for go.hashidemos.io"
 
-  tags = {
-    name       = "go"
-    owner      = "Grant Orchard"
-    created-by = "Grant Orchard"
-    ttl        = "-1"
-  }
+  tags = var.tags
 }
 
 resource "aws_route53_record" "aws_sub_zone_ns" {
@@ -82,11 +81,12 @@ resource "aws_route53_record" "aws_sub_zone_ns" {
   ]
 }
 
-resource "aws_vpc_peering_connection_accepter" "peer" {
-  vpc_peering_connection_id = "pcx-0a6956775e59ab4aa"
-  auto_accept               = true
+resource "aws_vpc_peering_connection" "this" {
+  vpc_id        = module.vpc.vpc_id
+  peer_vpc_id   = local.remote_vpc_id
+  auto_accept   = true
 
-  tags = {
-    Side = "Accepter"
-  }
+  tags = var.tags
 }
+
+

@@ -1,7 +1,7 @@
 variable tags {
   type = map
   default = {
-    TTL   = "48"
+    TTL   = "-1"
     owner = "Grant Orchard"
     delete = false
   }
