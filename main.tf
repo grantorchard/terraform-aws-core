@@ -1,5 +1,5 @@
 locals {
-  remote_vpc_id = data.terraform_remote_state.burkey-aws-core.vpc_id
+  remote_vpc_id = data.terraform_remote_state.burkey-aws-core.outputs.vpc_id
 }
 
 data aws_caller_identity "current" {}
