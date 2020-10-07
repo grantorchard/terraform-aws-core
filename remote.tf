@@ -1,4 +1,4 @@
-data "terraform_remote_state" "burkey-aws-core" {
+/*data "terraform_remote_state" "burkey-aws-core" {
   backend = "remote"
 
   config = {
@@ -8,4 +8,4 @@ data "terraform_remote_state" "burkey-aws-core" {
       name = "terraform-aws-core"
     }
   }
-}
+}*/
