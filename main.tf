@@ -1,5 +1,5 @@
 locals {
-  remote_vpc_id = "vpc-0481eed157a338ff8"
+  remote_vpc_id = "vpc-05d6b431311444675"
 }
 
 data aws_caller_identity "current" {}
