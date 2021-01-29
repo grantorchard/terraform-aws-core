@@ -34,7 +34,7 @@ module "security_group_ssh" {
   description = "SSH access"
   vpc_id      = module.vpc.vpc_id
 
-  ingress_cidr_blocks = concat(var.my_cidr,var.public_subnets, var.private_subnets)
+  ingress_cidr_blocks = concat(var.my_cidrs,var.public_subnets, var.private_subnets)
   ingress_rules = ["ssh-tcp"]
   tags = var.tags
 }
