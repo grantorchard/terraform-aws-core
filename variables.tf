@@ -30,8 +30,8 @@ variable vpc_cidr {
   default = "10.0.0.0/16"
 }
 
-variable my_cidr {
-  type = string
+variable my_cidrs {
+  type = list
 }
 
 variable sub_zone {
