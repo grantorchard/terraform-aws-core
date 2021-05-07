@@ -28,7 +28,7 @@ module "vpc" {
 
 module "security_group_ssh" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "3.17.0"
+  version = "4.0.0"
 
   name        = "ssh"
   description = "SSH access"
