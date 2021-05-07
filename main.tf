@@ -78,19 +78,4 @@ resource "aws_route53_record" "aws_sub_zone_ns" {
   ]
 }
 
-resource "aws_vpc_peering_connection" "this" {
-  vpc_id        = module.vpc.vpc_id
-  peer_vpc_id   = local.remote_vpc_id
-  auto_accept   = true
-
-  tags = var.tags
-}
-
-resource "aws_vpc_peering_connection_accepter" "this" {
-  vpc_peering_connection_id = aws_vpc_peering_connection.this.id
-  auto_accept               = true
-
-  tags = var.tags
-}
-
 
