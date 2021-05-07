@@ -11,11 +11,11 @@ output public_subnets {
 }
 
 output security_group_ssh {
-  value = module.security_group_ssh.this_security_group_id
+  value = module.security_group_ssh.security_group_id
 }
 
 output security_group_outbound {
-  value = module.security_group_outbound.this_security_group_id
+  value = module.security_group_outbound.security_group_id
 }
 
 output account_id {
