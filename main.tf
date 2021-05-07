@@ -10,10 +10,10 @@ data aws_availability_zones "this" {
 
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
-  version = "2.44.0"
+  version = "3.0.0"
 
 
-  name = "core"
+  name = "grant"
   cidr = var.vpc_cidr
 
   azs             = data.aws_availability_zones.this.names
@@ -28,20 +28,20 @@ module "vpc" {
 
 module "security_group_ssh" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "3.13.0"
+  version = "3.17.0"
 
   name        = "ssh"
   description = "SSH access"
   vpc_id      = module.vpc.vpc_id
 
-  ingress_cidr_blocks = concat(var.my_cidrs,var.public_subnets, var.private_subnets)
+  ingress_cidr_blocks = concat(var.my_cidrs, var.public_subnets, var.private_subnets)
   ingress_rules = ["ssh-tcp"]
   tags = var.tags
 }
 
 module "security_group_outbound" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "3.13.0"
+  version = "4.0.0"
 
   name        = "outbound"
   description = "outbound access"
