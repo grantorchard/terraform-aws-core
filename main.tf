@@ -1,6 +1,5 @@
 provider "aws" {
 	default_tags {
-   tags = local.tags
 	 tags = merge(var.tags, {
      owner       = "go"
 		 se-region   = "apj"
@@ -36,8 +35,6 @@ module "vpc" {
 
   enable_nat_gateway = true
   enable_vpn_gateway = false
-
-  tags = var.tags
 }
 
 module "security_group_ssh" {
@@ -50,7 +47,6 @@ module "security_group_ssh" {
 
   ingress_cidr_blocks = concat(var.my_cidrs, var.public_subnets, var.private_subnets)
   ingress_rules = ["ssh-tcp"]
-  tags = var.tags
 }
 
 module "security_group_outbound" {
@@ -62,7 +58,6 @@ module "security_group_outbound" {
   vpc_id      = module.vpc.vpc_id
 
   egress_rules = ["all-all"]
-  tags = var.tags
 }
 
 data "aws_route53_zone" "main" {
@@ -75,8 +70,6 @@ resource "aws_route53_zone" "aws_sub_zone" {
   for_each = toset(var.sub_zone)
   name    = each.value
   comment = "Managed by Terraform, Delegated Sub Zone for AWS for go.hashidemos.io"
-
-  tags = var.tags
 }
 
 resource "aws_route53_record" "aws_sub_zone_ns" {
