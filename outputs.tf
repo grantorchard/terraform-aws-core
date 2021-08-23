@@ -21,3 +21,11 @@ output security_group_outbound {
 output account_id {
   value = data.aws_caller_identity.current.account_id
 }
+
+output public_route_table_ids {
+	value = module.vpc.public_route_table_ids
+}
+
+output private_route_table_ids {
+	value = module.vpc.private_route_table_ids
+}
