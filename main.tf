@@ -1,3 +1,17 @@
+provider "aws" {
+	default_tags {
+   tags = local.tags
+	 tags = merge(var.tags, {
+     owner       = "go"
+		 se-region   = "apj"
+		 purpose     = "hcp connectivity"
+     ttl         = "-1"
+		 terraform   = true
+		 hc-internet-facing = false
+   })
+ }
+}
+
 locals {
   remote_vpc_id = "vpc-05d6b431311444675"
 }

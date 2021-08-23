@@ -1,10 +1,6 @@
 variable tags {
   type = map
-  default = {
-    TTL   = "-1"
-    owner = "Grant Orchard"
-    delete = false
-  }
+  default = {}
 }
 
 variable public_subnets {
