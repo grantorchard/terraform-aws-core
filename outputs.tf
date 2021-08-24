@@ -25,3 +25,11 @@ output account_id {
 output default_route_table_id {
 	value = module.vpc.default_route_table_id
 }
+
+output private_route_table_ids {
+	value = module.vpc.private_route_table_ids
+}
+
+output public_route_table_ids {
+	value = module.vpc.public_route_table_ids
+}
