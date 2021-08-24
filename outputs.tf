@@ -22,10 +22,6 @@ output account_id {
   value = data.aws_caller_identity.current.account_id
 }
 
-output public_route_table_ids {
-	value = module.vpc.public_route_table_ids
-}
-
-output private_route_table_ids {
-	value = module.vpc.private_route_table_ids
+output default_route_table_id {
+	value = module.vpc.default_route_table_id
 }
