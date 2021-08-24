@@ -59,30 +59,3 @@ module "security_group_outbound" {
 
   egress_rules = ["all-all"]
 }
-
-data "aws_route53_zone" "main" {
-  name = "hashidemos.io"
-}
-
-# AWS SUBZONE
-
-resource "aws_route53_zone" "aws_sub_zone" {
-  for_each = toset(var.sub_zone)
-  name    = each.value
-  comment = "Managed by Terraform, Delegated Sub Zone for AWS for go.hashidemos.io"
-}
-
-resource "aws_route53_record" "aws_sub_zone_ns" {
-  for_each = toset(var.sub_zone)
-  zone_id = data.aws_route53_zone.main.zone_id
-  name    = each.value
-  type    = "NS"
-  ttl     = "30"
-
-  records = [
-    for awsns in aws_route53_zone.aws_sub_zone[each.value].name_servers :
-    awsns
-  ]
-}
-
-
