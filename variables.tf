@@ -27,10 +27,5 @@ variable vpc_cidr {
 }
 
 variable my_cidrs {
-  type = list
-}
-
-variable sub_zone {
-  type= list
-  default = []
+  type = list(string)
 }
